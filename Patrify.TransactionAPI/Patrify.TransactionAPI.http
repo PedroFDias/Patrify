@@ -1,0 +1,6 @@
+@Patrify.TransactionAPI_HostAddress = http://localhost:5049
+
+GET {{Patrify.TransactionAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

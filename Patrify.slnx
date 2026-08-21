@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/Integration/">
+    <Project Path="Patrify.MessageBus/Patrify.MessageBus.csproj" Id="7da19363-2ce8-42fc-8f5d-2ed031fb1f2a" />
+  </Folder>
+  <Folder Name="/Services/">
+    <Project Path="Patrify.TransactionAPI/Patrify.TransactionAPI.csproj" />
+  </Folder>
+</Solution>
