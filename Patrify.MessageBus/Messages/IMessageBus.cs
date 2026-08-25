@@ -1,4 +1,4 @@
-﻿namespace Patrify.MessageBus
+﻿namespace Patrify.MessageBus.Messages
 {
     public interface IMessageBus
     {

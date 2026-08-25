@@ -1,9 +1,7 @@
-﻿using Patrify.TransactionAPI.Entities;
+﻿using GenericRepository;
+using Patrify.TransactionAPI.Entities;
 
 namespace Patrify.TransactionAPI.Repositories
 {
-    public interface ITransactionRepository
-    {
-        Task AddAsync(Transaction transaction);
-    }
+    public interface ITransactionRepository : IRepository<Transaction> { }
 }

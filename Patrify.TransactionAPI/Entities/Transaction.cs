@@ -7,7 +7,8 @@ namespace Patrify.TransactionAPI.Entities
 {
     public class Transaction: BaseEntity
     {
-        public int AccountId { get; set; }
+        public Guid AccountID { get; set; }
+
         [Precision(18, 2)]
         public decimal Amount { get; set; }
         public string? Description { get; set; }

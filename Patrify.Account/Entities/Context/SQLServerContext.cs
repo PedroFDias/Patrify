@@ -1,11 +1,12 @@
 ﻿using GenericRepository;
 using Microsoft.EntityFrameworkCore;
 
-namespace Patrify.TransactionAPI.Entities.Context
+namespace Patrify.Account.Entities.Context
 {
-    public class SQLServerContext : DbContext, IUnitOfWork
+    public class SQLServerContext: DbContext , IUnitOfWork
     {
         public SQLServerContext(DbContextOptions<SQLServerContext> options) : base(options) { }
-        public DbSet<Transaction> Transactions { get; set; }
+
+        public DbSet<Account> Accounts { get; set; }
     }
 }
