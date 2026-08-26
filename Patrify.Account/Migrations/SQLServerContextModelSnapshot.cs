@@ -22,7 +22,7 @@ namespace Patrify.Account.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Patrify.Account.Entities.Account", b =>
+            modelBuilder.Entity("Patrify.Account.Entities.UserAccount", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()

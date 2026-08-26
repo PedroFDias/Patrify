@@ -1,10 +1,4 @@
-﻿using AutoMapper;
-using GenericRepository;
-using Patrify.Account.DTO;
-using Patrify.Account.Entities;
-using Patrify.Account.IRepository;
-
-namespace Patrify.Account.Services
+﻿namespace Patrify.Account.Services
 {
     public class AccountService : IAccountService
     {
@@ -16,7 +10,7 @@ namespace Patrify.Account.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task AddAsync(Entities.Account account)
+        public async Task AddAsync(UserAccount account)
         {
             await _repository.AddAsync(account);
             await _unitOfWork.SaveChangesAsync();

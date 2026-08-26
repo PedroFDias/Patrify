@@ -1,7 +1,4 @@
-﻿using Patrify.MessageBus.Messages;
-using RabbitMQ.Client;
-
-namespace Patrify.MessageBus.RabbitMQ.Publish
+﻿namespace Patrify.MessageBus.RabbitMQ.Publish
 {
     public interface IRabbitMQPublish
     {

@@ -1,11 +1,6 @@
-﻿using GenericRepository;
-using Microsoft.EntityFrameworkCore;
-using Patrify.Account.Entities.Context;
-using Patrify.Account.IRepository;
-
-namespace Patrify.Account.Repository
+﻿namespace Patrify.Account.Repository
 {
-    public class AccountRepository : Repository<Entities.Account, SQLServerContext>, IAccountRepository
+    public class AccountRepository : Repository<UserAccount, SQLServerContext>, IAccountRepository
     {
         public AccountRepository(SQLServerContext context) : base(context) { }
 

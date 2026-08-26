@@ -2,6 +2,6 @@
 {
     public interface IAccountService
     {
-        Task AddAsync(Entities.Account account);
+        Task AddAsync(UserAccount account);
     }
 }

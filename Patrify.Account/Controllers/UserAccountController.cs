@@ -7,27 +7,27 @@ namespace Patrify.Account.Controllers
 {
     [ApiController]
     [Route("api/accounts")]
-    public class AccountController : ControllerBase
+    public class UserAccountController : ControllerBase
     {
         public IAccountService _service;
         public IMapper _mapper;
 
-        public AccountController(IAccountService service, IMapper mapper)
+        public UserAccountController(IAccountService service, IMapper mapper)
         {
             _service = service;
             _mapper = mapper;
         }
 
         [HttpPost]
-        public async Task<AccountRequest> AddAccount(AccountRequest accountDto)
+        public async Task<UserAccountRequest> AddAccount(UserAccountRequest accountDto)
         {
-            var account = _mapper.Map<Entities.Account>(accountDto);
+            var account = _mapper.Map<Entities.UserAccount>(accountDto);
             await _service.AddAsync(account);
             return accountDto;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(AccountRequest accountDto)
+        public async Task<IActionResult> Get(UserAccountRequest accountDto)
         {
             return Ok();
         }

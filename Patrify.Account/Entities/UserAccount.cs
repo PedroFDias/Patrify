@@ -1,16 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Patrify.Account.Entities.Base;
-
-namespace Patrify.Account.Entities
+﻿namespace Patrify.Account.Entities
 {
-    public class Account : BaseEntity
+    public class UserAccount : BaseEntity
     {
         public string Name { get; set; } = string.Empty;
         [Precision(18, 2)]
         public decimal Balance { get; set; }
         public bool IsActive { get; set; }
 
-        public Account(string name)
+        public UserAccount(string name)
         {
             Name = name;
             Balance = 0;

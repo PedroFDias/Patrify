@@ -1,5 +1,4 @@
-﻿using Patrify.MessageBus.Messages;
-using RabbitMQ.Client;
+﻿using RabbitMQ.Client;
 using System.Text;
 using System.Text.Json;
 
@@ -10,7 +9,6 @@ namespace Patrify.MessageBus.RabbitMQ.Publish
         private readonly string _hostName;
         private readonly string _password;
         private readonly string _userName;
-        private IConnection? _connection;
 
         public RabbitMQPublish()
         {

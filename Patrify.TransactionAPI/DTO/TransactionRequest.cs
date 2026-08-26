@@ -1,14 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Patrify.MessageBus.Messages;
+using Patrify.MessageBus.Contracts;
 using Patrify.TransactionAPI.Entities;
 
 namespace Patrify.TransactionAPI.DTO
 {
-    public class TransactionRequest: BaseMessage
-    {
-        public Guid AccountID { get; set; }
-        public decimal Amount { get; set; }
-        public string? Description { get; set; }
-        public TransactionType Type { get; set; }
-    }
+    public record TransactionRequest(
+        Guid AccountId,
+        decimal Amount,
+        string? Description,
+        TransactionType Type
+    ) : BaseMessage;
 }

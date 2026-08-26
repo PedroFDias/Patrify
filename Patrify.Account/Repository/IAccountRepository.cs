@@ -1,8 +1,6 @@
-﻿using GenericRepository;
-using Patrify.Account.Entities;
-namespace Patrify.Account.IRepository
+﻿namespace Patrify.Account.IRepository
 {
-    public interface IAccountRepository : IRepository<Entities.Account> 
+    public interface IAccountRepository : IRepository<UserAccount> 
     {
         Task UpdateAmount(Guid AccountID, decimal amount);
     }

@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Patrify.Account.DTO;
+using Patrify.MessageBus.Contracts.Events;
 using Patrify.MessageBus.RabbitMQ.Publish;
 using Patrify.TransactionAPI.DTO;
 using Patrify.TransactionAPI.Entities;
-using Patrify.TransactionAPI.Repositories;
 using Patrify.TransactionAPI.Service;
 using RabbitMQ.Client;
 
@@ -31,13 +30,12 @@ namespace Patrify.TransactionAPI.Controller
             var transaction = _mapper.Map<Transaction>(request);
             await _transactionService.AddAsync(transaction);
 
-            var message = new TransactionCreatedEvent
-            {
-                TransactionId = transaction.Id,
-                AccountId = request.AccountID,
-                Amount = transaction.Amount,
-                Type = transaction.Type
-            };
+            var message = new TransactionCreatedEvent(
+                transaction.Id,
+                request.AccountId,
+                transaction.Amount,
+                (MessageBus.Contracts.Enums.TransactionType)request.Type
+            );
 
             await _rabbitMQMessageSender.Publish(
                 message,

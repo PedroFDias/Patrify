@@ -6,7 +6,7 @@ namespace Patrify.Account.Profiles
     {
         public AccountProfile()
         {
-            CreateMap<DTO.AccountRequest, Entities.Account>();
+            CreateMap<DTO.UserAccountRequest, UserAccount>();
         }
     }
 }

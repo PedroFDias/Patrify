@@ -7,6 +7,6 @@ namespace Patrify.Account.Entities.Context
     {
         public SQLServerContext(DbContextOptions<SQLServerContext> options) : base(options) { }
 
-        public DbSet<Account> Accounts { get; set; }
+        public DbSet<UserAccount> Accounts { get; set; }
     }
 }

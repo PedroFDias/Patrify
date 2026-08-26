@@ -1,8 +1,7 @@
 ﻿using GenericRepository;
-using Patrify.Account.DTO;
 using Patrify.Account.IRepository;
+using Patrify.MessageBus.Contracts.Events;
 using Patrify.MessageBus.RabbitMQ.Consumer;
-using RabbitMQ.Client;
 
 namespace Patrify.Account.Message
 {
