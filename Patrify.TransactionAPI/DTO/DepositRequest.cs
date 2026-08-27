@@ -1,11 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Patrify.MessageBus.Contracts;
-using Patrify.TransactionAPI.Entities;
+﻿using Patrify.MessageBus.Contracts;
 
 namespace Patrify.TransactionAPI.DTO
 {
-    public record TransactionRequest(
+    public record DepositRequest(
         Guid AccountId,
+        Guid? TargetAccountId,
         decimal Amount,
         string? Description,
         TransactionType Type

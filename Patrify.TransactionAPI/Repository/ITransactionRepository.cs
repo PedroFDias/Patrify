@@ -1,7 +1,4 @@
-﻿using GenericRepository;
-using Patrify.TransactionAPI.Entities;
-
-namespace Patrify.TransactionAPI.Repositories
+﻿namespace Patrify.TransactionAPI.Repository
 {
     public interface ITransactionRepository : IRepository<Transaction> { }
 }

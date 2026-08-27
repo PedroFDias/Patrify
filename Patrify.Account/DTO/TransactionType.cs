@@ -2,11 +2,7 @@
 {
     public enum TransactionType
     {
-        None,
-        Credit,
-        Debit,
+        Deposit,
         Transfer,
-        Payment,
-        Other
     }
 }

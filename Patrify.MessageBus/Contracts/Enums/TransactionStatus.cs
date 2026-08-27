@@ -1,4 +1,4 @@
-﻿namespace Patrify.TransactionAPI.Entities
+﻿namespace Patrify.MessageBus.Contracts.Enums
 {
     public enum TransactionStatus
     {

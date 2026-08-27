@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using Patrify.TransactionAPI.DTO;
-using Patrify.TransactionAPI.Entities;
 
 namespace Patrify.TransactionAPI.Mappings
 {
@@ -8,7 +6,8 @@ namespace Patrify.TransactionAPI.Mappings
     {
         public TransactionProfile() 
         { 
-            CreateMap<TransactionRequest, Transaction>();
+            CreateMap<DepositRequest, Transaction>().ReverseMap();
+            CreateMap<TransferRequest, Transaction>().ReverseMap();
         }
     }
 }

@@ -1,0 +1,9 @@
+﻿global using GenericRepository;
+global using Patrify.TransactionAPI.Entities;
+global using Patrify.TransactionAPI.Entities.Context;
+global using Patrify.TransactionAPI.Service;
+global using Patrify.TransactionAPI.Repository;
+global using Microsoft.EntityFrameworkCore;
+global using Patrify.TransactionAPI.Entities.Base;
+global using Patrify.MessageBus.Contracts.Events;
+global using Patrify.TransactionAPI.DTO;

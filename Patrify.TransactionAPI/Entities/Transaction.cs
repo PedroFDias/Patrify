@@ -1,13 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Patrify.TransactionAPI.Entities.Base;
-using System.ComponentModel.DataAnnotations.Schema;
-
-
+﻿using Patrify.MessageBus.Contracts.Enums;
 namespace Patrify.TransactionAPI.Entities
 {
     public class Transaction: BaseEntity
     {
-        public Guid AccountID { get; set; }
+        public Guid AccountId { get; set; }
+        public Guid? TargetAccountId { get; set; }
 
         [Precision(18, 2)]
         public decimal Amount { get; set; }

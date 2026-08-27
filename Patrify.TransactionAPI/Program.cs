@@ -1,11 +1,6 @@
-using GenericRepository;
-using Microsoft.EntityFrameworkCore;
+using Patrify.MessageBus.RabbitMQ.Consumer;
 using Patrify.MessageBus.RabbitMQ.Publish;
-using Patrify.TransactionAPI.Entities.Context;
-using Patrify.TransactionAPI.Mappings;
-using Patrify.TransactionAPI.Repositories;
-using Patrify.TransactionAPI.Service;
-using System.Runtime.CompilerServices;
+using Patrify.TransactionAPI.Message;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,10 +19,13 @@ builder.Services.AddDbContext<SQLServerContext>(options =>
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
 
 builder.Services.AddSingleton<IRabbitMQPublish, RabbitMQPublish>();
+builder.Services.AddSingleton<IRabbitMQConsumer, RabbitMQConsumer>();
 
 builder.Services.AddScoped<ITransactionService, TransactionService>();
 
 builder.Services.AddScoped<IUnitOfWork>(srv => srv.GetRequiredService<SQLServerContext>());
+
+builder.Services.AddHostedService<TransactionChangeStatusConsumer>();
 
 builder.Services.AddOpenApi();
 

@@ -1,4 +1,4 @@
-﻿namespace Patrify.Account.Services
+﻿namespace Patrify.Account.Service
 {
     public interface IAccountService
     {

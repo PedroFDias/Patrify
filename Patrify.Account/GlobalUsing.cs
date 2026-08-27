@@ -1,7 +1,11 @@
 ﻿global using GenericRepository;
 global using Patrify.Account.Entities;
 global using Patrify.Account.Entities.Context;
-global using Patrify.Account.Services;
+global using Patrify.Account.Service;
 global using Patrify.Account.IRepository;
 global using Microsoft.EntityFrameworkCore;
 global using Patrify.Account.Entities.Base;
+global using Patrify.MessageBus.Contracts.Events;
+global using Patrify.MessageBus.RabbitMQ.Consumer;
+global using Patrify.MessageBus.RabbitMQ.Publish;
+global using Patrify.MessageBus.Contracts.Enums;

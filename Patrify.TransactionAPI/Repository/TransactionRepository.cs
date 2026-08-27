@@ -1,9 +1,4 @@
-﻿using GenericRepository;
-using Microsoft.EntityFrameworkCore;
-using Patrify.TransactionAPI.Entities;
-using Patrify.TransactionAPI.Entities.Context;
-
-namespace Patrify.TransactionAPI.Repositories
+﻿namespace Patrify.TransactionAPI.Repository
 {
     public class TransactionRepository : Repository<Transaction, SQLServerContext>, ITransactionRepository
     {

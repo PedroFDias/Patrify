@@ -2,11 +2,11 @@
 
 namespace Patrify.MessageBus.Contracts.Events
 {
-    public record TransactionCreatedEvent
+    public record DepositCreatedEvent
     (
         Guid TransactionId,
         Guid AccountId,
         decimal Amount,
-        TransactionType Type
+        TransactionStatus Type
     ) : BaseMessage;
 }

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Patrify.Account.DTO;
 
-namespace Patrify.Account.Mapper
+namespace Patrify.Account.Profiles
 {
     public class UserAccountProfile: Profile
     {

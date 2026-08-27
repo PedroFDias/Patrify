@@ -1,7 +1,6 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Patrify.Account.DTO;
-using Patrify.Account.Services;
 
 namespace Patrify.Account.Controllers
 {
