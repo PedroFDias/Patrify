@@ -24,19 +24,20 @@
                 {
                     try
                     {
-                        Console.WriteLine("Mensagem recebida");
                         using var scope = ServicesProvider.CreateScope();
                         var accountRepository = scope.ServiceProvider.GetRequiredService<IAccountRepository>();
-
                         var unitOfWork = scope.ServiceProvider.GetRequiredService<IUnitOfWork>();
+
+                        var accountOrigem = accountRepository.GetByExpressionWithTracking(a => a.Id == message.AccountId);
+
+                        if(accountOrigem?.Balance < message.Amount)
+                        {
+                            throw new InvalidOperationException("Saldo insuficiente");
+                        }
 
                         await accountRepository.UpdateAmount(message.AccountId, -message.Amount);
                         await accountRepository.UpdateAmount(message.TargetAccountId, message.Amount);
-
-                        Console.WriteLine("Accounts atualizadas");
                         await unitOfWork.SaveChangesAsync();
-                        Console.WriteLine("UnitOfWork salva");
-                        Console.WriteLine("Handler terminou");
 
                         var messageSender = new TransactionStatusChangeEvent(message.TransactionId, TransactionStatus.Completed);
 
@@ -47,7 +48,7 @@
                             "status.change"
                         );
                     }
-                    catch (Exception ex)
+                    catch
                     {
                         var messageSender = new TransactionStatusChangeEvent(message.TransactionId, TransactionStatus.Failed);
 
@@ -57,9 +58,6 @@
                             "topic",
                             "status.change"
                         );
-
-                        Console.WriteLine($"Erro: {ex}");
-                        throw;
                     }
                 }
             );

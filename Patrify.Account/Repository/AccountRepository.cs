@@ -12,6 +12,7 @@
                 throw new KeyNotFoundException($"Account {AccountID} not found.");
 
             accountDb.Balance = accountDb.Balance + amount;
+            accountDb.UpdateAt = DateTime.Now;
 
             Update(accountDb);
         }

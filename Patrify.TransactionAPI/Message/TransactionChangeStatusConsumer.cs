@@ -27,8 +27,9 @@ namespace Patrify.TransactionAPI.Message
                         var transactionRepository = scope.ServiceProvider.GetRequiredService<ITransactionRepository>();
                         var unitOfWork = scope.ServiceProvider.GetRequiredService<IUnitOfWork>();
 
-                        var transaction = transactionRepository.GetByExpression(t => t.Id == message.TransactionId);
+                        var transaction = transactionRepository.GetByExpressionWithTracking(t => t.Id == message.TransactionId);
                         transaction.Status = message.Status;
+                        transaction.UpdatedDate = DateTime.Now;
 
                         await unitOfWork.SaveChangesAsync();
                     }

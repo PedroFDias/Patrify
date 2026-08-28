@@ -1,6 +1,8 @@
 using Patrify.MessageBus.RabbitMQ.Consumer;
 using Patrify.MessageBus.RabbitMQ.Publish;
 using Patrify.TransactionAPI.Message;
+using FluentValidation;
+using Patrify.MessageBus.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +27,8 @@ builder.Services.AddScoped<ITransactionService, TransactionService>();
 
 builder.Services.AddScoped<IUnitOfWork>(srv => srv.GetRequiredService<SQLServerContext>());
 
+builder.Services.AddValidatorsFromAssemblyContaining<Program>();
+
 builder.Services.AddHostedService<TransactionChangeStatusConsumer>();
 
 builder.Services.AddOpenApi();
@@ -42,6 +46,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.MapControllers();
 
