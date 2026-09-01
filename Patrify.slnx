@@ -3,6 +3,7 @@
     <Project Path="Patrify.MessageBus/Patrify.MessageBus.csproj" Id="7da19363-2ce8-42fc-8f5d-2ed031fb1f2a" />
   </Folder>
   <Folder Name="/Services/">
+    <Project Path="Patrifi.NotificationService/Patrify.NotificationService.csproj" Id="aa3a9775-d3fc-47a6-9213-66cf376b79c6" />
     <Project Path="Patrify.Account/Patrify.Account.csproj" Id="4bda5637-b8c6-44da-abf9-3f30505d38a0" />
     <Project Path="Patrify.TransactionAPI/Patrify.TransactionAPI.csproj" />
   </Folder>

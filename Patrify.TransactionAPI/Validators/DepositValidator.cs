@@ -6,9 +6,9 @@ namespace Patrify.TransactionAPI.Validators
     {
         public DepositValidator()
         {
-            RuleFor(x => x.AccountId)
+            RuleFor(x => x.Cpf)
                 .NotEmpty()
-                .WithMessage("AccountId is required.");
+                .WithMessage("Cpf is required.");
 
             RuleFor(x => x.Amount)
                 .GreaterThan(0)

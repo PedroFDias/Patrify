@@ -3,7 +3,7 @@
 namespace Patrify.TransactionAPI.DTO
 {
     public record DepositRequest(
-        Guid AccountId,
+        string Cpf,
         decimal Amount,
         string? Description,
         TransactionType Type

@@ -10,17 +10,17 @@ namespace Patrify.TransactionAPI.Validators
                 .GreaterThan(0)
                 .WithMessage("The amount must be greater than zero.");
 
-            RuleFor(x => x.AccountId)
+            RuleFor(x => x.CpfAccountOrigem)
                 .NotEmpty()
-                .WithMessage("The source account ID must not be empty.");
+                .WithMessage("The source Cpf must not be empty.");
 
-            RuleFor(x => x.targetAccountId)
+            RuleFor(x => x.CpfAccountDestino)
                 .NotEmpty()
-                .WithMessage("The target account ID must not be empty.");
+                .WithMessage("The target CpfDestino must not be empty.");
 
-            RuleFor(x => x.targetAccountId)
-                .NotEqual(x => x.AccountId)
-                .WithMessage("The target account must be different from the source account.");
+            RuleFor(x => x.CpfAccountDestino)
+                .NotEqual(x => x.CpfAccountOrigem)
+                .WithMessage("The target CpfDestino must be different from the source Cpf.");
 
             RuleFor(x => x.Type)
                 .IsInEnum()

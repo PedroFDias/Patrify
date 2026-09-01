@@ -1,11 +1,11 @@
 ﻿using Patrify.MessageBus.Contracts;
 using Patrify.MessageBus.Contracts.Enums;
 
-namespace Patrify.TransactionAPI.DTO
+namespace Patrify.NotificationService.DTO
 {
     public record TransferRequest(
-        string CpfAccountOrigem,
-        string CpfAccountDestino,
+        Guid AccountId,
+        Guid targetAccountId,
         decimal Amount,
         string? Description,
         TransactionStatus Type

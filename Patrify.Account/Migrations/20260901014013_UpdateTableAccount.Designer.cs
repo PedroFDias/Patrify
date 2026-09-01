@@ -12,8 +12,8 @@ using Patrify.Account.Entities.Context;
 namespace Patrify.Account.Migrations
 {
     [DbContext(typeof(SQLServerContext))]
-    [Migration("20260824194522_AddAccountTableOnDb")]
-    partial class AddAccountTableOnDb
+    [Migration("20260901014013_UpdateTableAccount")]
+    partial class UpdateTableAccount
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace Patrify.Account.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Patrify.Account.Entities.Account", b =>
+            modelBuilder.Entity("Patrify.Account.Entities.UserAccount", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -35,11 +35,23 @@ namespace Patrify.Account.Migrations
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("Cpf")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()

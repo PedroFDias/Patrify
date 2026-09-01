@@ -7,7 +7,8 @@ namespace Patrify.Account.Profiles
     {
         public UserAccountProfile()
         {
-            CreateMap<UserAccount, UserAccountRequest>();
+            CreateMap<UserAccount, UserAccountRequest>().ReverseMap();
+            CreateMap<UserAccount, UserAccountResponse>();
         }
     }
 }

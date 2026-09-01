@@ -18,17 +18,17 @@ namespace Patrify.Account.Controllers
         }
 
         [HttpPost]
-        public async Task<UserAccountRequest> AddAccount(UserAccountRequest accountDto)
+        public async Task<UserAccountResponse> AddAccount(UserAccountRequest accountDto)
         {
-            var account = _mapper.Map<Entities.UserAccount>(accountDto);
+            var account = _mapper.Map<UserAccount>(accountDto);
             await _service.AddAsync(account);
-            return accountDto;
+            return _mapper.Map<UserAccountResponse>(account);
+        }
+        [HttpGet("{cpf}")]
+        public async Task<UserAccountResponse?> Get(string cpf)
+        {
+            return _mapper.Map<UserAccountResponse?>(await _service.GetAccountByCpf(cpf));
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get(UserAccountRequest accountDto)
-        {
-            return Ok();
-        }
     }
 }

@@ -26,9 +26,11 @@
 
                         var accountRepository = scope.ServiceProvider.GetRequiredService<IAccountRepository>();
 
+                        var account = accountRepository.GetByExpressionWithTracking(a => a.Id == message.AccountId);
+
                         var unitOfWork = scope.ServiceProvider.GetRequiredService<IUnitOfWork>();
 
-                        await accountRepository.UpdateAmount(message.AccountId, message.Amount);
+                        await accountRepository.UpdateAmount(account.Id, message.Amount);
 
                         await unitOfWork.SaveChangesAsync();
 

@@ -29,14 +29,15 @@
                         var unitOfWork = scope.ServiceProvider.GetRequiredService<IUnitOfWork>();
 
                         var accountOrigem = accountRepository.GetByExpressionWithTracking(a => a.Id == message.AccountId);
+                        var accountDestino = accountRepository.GetByExpressionWithTracking(a => a.Id == message.TargetAccountId);
 
-                        if(accountOrigem?.Balance < message.Amount)
+                        if (accountOrigem?.Balance < message.Amount)
                         {
                             throw new InvalidOperationException("Saldo insuficiente");
                         }
 
-                        await accountRepository.UpdateAmount(message.AccountId, -message.Amount);
-                        await accountRepository.UpdateAmount(message.TargetAccountId, message.Amount);
+                        await accountRepository.UpdateAmount(accountOrigem.Id, -message.Amount);
+                        await accountRepository.UpdateAmount(accountDestino.Id, message.Amount);
                         await unitOfWork.SaveChangesAsync();
 
                         var messageSender = new TransactionStatusChangeEvent(message.TransactionId, TransactionStatus.Completed);
@@ -46,6 +47,40 @@
                             "Patrify.exchange",
                             "topic",
                             "status.change"
+                        );
+
+                        var messageSendNotification = new TransferNotificationEvent(
+                            accountOrigem.Id,
+                            accountOrigem.Name,
+                            accountOrigem.LastName,
+                            accountOrigem.Email,
+                            $"{accountDestino.Name} {accountDestino.LastName}",
+                            message.Amount,
+                            NotificationType.TransferSent
+                        );
+
+                        var messageReceivedNotification = new TransferNotificationEvent(
+                            accountDestino.Id,
+                            accountDestino.Name,
+                            accountDestino.LastName,
+                            accountDestino.Email,
+                            $"{accountOrigem.Name} {accountOrigem.LastName}",
+                            message.Amount,
+                            NotificationType.TransferReceived
+                        );
+
+                        await _rabbitMQMessageSender.Publish(
+                            messageSendNotification,
+                            "Patrify.exchange",
+                            "topic",
+                            "notification.transfer.sent"
+                        );
+
+                        await _rabbitMQMessageSender.Publish(
+                            messageReceivedNotification,
+                            "Patrify.exchange",
+                            "topic",
+                            "notification.transfer.received"
                         );
                     }
                     catch

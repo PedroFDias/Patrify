@@ -1,0 +1,6 @@
+@Patrify.NotificationService_HostAddress = http://localhost:5049
+
+GET {{Patrify.NotificationService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,8 +1,9 @@
+using FluentValidation;
+using Patrify.MessageBus.Middleware;
 using Patrify.MessageBus.RabbitMQ.Consumer;
 using Patrify.MessageBus.RabbitMQ.Publish;
 using Patrify.TransactionAPI.Message;
-using FluentValidation;
-using Patrify.MessageBus.Middleware;
+using Patrify.TransactionAPI.Service.Clients;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,11 @@ builder.Services.AddDbContext<SQLServerContext>(options =>
 {
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("SqlServer"));
+});
+
+builder.Services.AddHttpClient<IAccountClient, AccountClient>(client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7243");
 });
 
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();

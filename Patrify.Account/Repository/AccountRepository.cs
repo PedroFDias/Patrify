@@ -4,12 +4,12 @@
     {
         public AccountRepository(SQLServerContext context) : base(context) { }
 
-        public async Task UpdateAmount(Guid AccountID, decimal amount)
+        public async Task UpdateAmount(Guid accountId, decimal amount)
         {
-            var accountDb = await FirstOrDefaultAsync(a => a.Id == AccountID);
+            var accountDb = GetByExpressionWithTracking(a => a.Id == accountId);
 
             if (accountDb is null)
-                throw new KeyNotFoundException($"Account {AccountID} not found.");
+                throw new KeyNotFoundException($"Account {accountId} not found.");
 
             accountDb.Balance = accountDb.Balance + amount;
             accountDb.UpdateAt = DateTime.Now;

@@ -2,6 +2,6 @@
 {
     public interface IAccountRepository : IRepository<UserAccount> 
     {
-        Task UpdateAmount(Guid AccountID, decimal amount);
+        Task UpdateAmount(Guid accountId, decimal amount);
     }
 }

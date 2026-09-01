@@ -1,4 +1,6 @@
-﻿namespace Patrify.Account.Service
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace Patrify.Account.Service
 {
     public class AccountService : IAccountService
     {
@@ -14,6 +16,11 @@
         {
             await _repository.AddAsync(account);
             await _unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task<UserAccount?> GetAccountByCpf(string cpf)
+        {
+            return await _repository.GetByExpressionAsync(a => a.Cpf == cpf);
         }
     }
 }
